@@ -1,22 +1,14 @@
 import pytest
 from django.urls import reverse
 from registration.utils import create_user_account
-from mainapp.utils import create_album_in_db
+
 
 from django.contrib.auth.models import User
-from mainapp.models import Album
-
 
 @pytest.mark.django_db
 def test_user_create():
   create_user_account('lennon@thebeatles.com', 'johnpassword')
   assert User.objects.count() == 1
-
-@pytest.mark.django_db
-def test_album_create():
-  author = create_user_account('lennon@thebeatles.com', 'johnpassword')
-  create_album_in_db('my_album', author)
-  assert Album.objects.count() == 1
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
@@ -36,11 +28,8 @@ def test_login_data_validation(
        "email": email,
        "password": password
    }
-   print(User.objects.all())
    url = reverse('auth-login')
-   print(data)
    response = api_client.post(url, data=data, format = 'json')
-   print(response.data)
    assert status_code == response.status_code
 
 def test_logout(api_client):

@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'taggit',
     'taggit_serializer',
-    
+    'django_cleanup',
+    'imagekit'
 ]
 
 MIDDLEWARE = [

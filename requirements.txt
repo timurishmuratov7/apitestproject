@@ -4,3 +4,5 @@ pytest-django
 Pillow
 django-taggit
 django-taggit-serializer
+django-cleanup
+django-imagekit

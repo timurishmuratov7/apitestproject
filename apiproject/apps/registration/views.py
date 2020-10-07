@@ -4,11 +4,11 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-
 from . import serializers
 from .utils import get_and_authenticate_user, create_user_account
 
 User = get_user_model()
+
 
 class AuthViewSet(viewsets.GenericViewSet):
     permission_classes = [AllowAny, ]
@@ -41,10 +41,10 @@ class AuthViewSet(viewsets.GenericViewSet):
         data = {'success': 'Sucessfully logged out'}
         return Response(data=data, status=status.HTTP_200_OK)
 
-
     def get_serializer_class(self):
         if not isinstance(self.serializer_classes, dict):
-            raise ImproperlyConfigured("serializer_classes should be a dict mapping.")
+            raise ImproperlyConfigured("serializer_classes" +
+                                       " should be a dict mapping.")
 
         if self.action in self.serializer_classes.keys():
             return self.serializer_classes[self.action]
